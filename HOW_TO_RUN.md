@@ -14,9 +14,28 @@ This project includes a Docker Compose configuration for running the Rails appli
    ```bash
    docker compose up -d
    ```
+3. **run database migration:**
+   ```bash
+   docker compose exec app bin/rails db:migrate
+   ```
 
-3. **Access the application:**
+4. **Access the application:**
    - Main app: http://localhost:3000
+
+## Running tests
+
+Run the comprehensive test suite:
+
+```bash
+# get inside the docker container
+docker compose exec -it app bash
+
+# Run all tests
+bin/rails test
+
+# Run specific test file
+bin/rails test test/controllers/links_controller_test.rb
+```
 
 ## Testing the functionality
 
