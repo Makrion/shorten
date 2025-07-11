@@ -5,10 +5,10 @@ ruby "3.4.4"
 gem "rails", "~> 8.0.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", ">= 2.1"
-# Use mysql2 as the database for Active Record in production
-gem "mysql2", "~> 0.5", group: :production
+# Use sqlite3 as the database for Active Record (development only)
+gem "sqlite3", ">= 2.1", group: [:development, :test]
+# Use pg as the database for Active Record in production
+gem "pg", "~> 1.1", group: :production
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
