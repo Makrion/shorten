@@ -37,8 +37,8 @@ module LinksParams
   end
 
   def validate_short_link(short_link)
-    raise CustomExceptions::InvalidUrl, "invalid shortlink" if \
-      short_link.first(Shorten::Application::BASE_URL.size).downcase != Shorten::Application::BASE_URL
+    raise CustomExceptions::InvalidUrl, "invalid shortlink" unless \
+      short_link.downcase.starts_with?(Shorten::Application::BASE_URL)
 
     correct_size = Shorten::Application::BASE_URL.size + UrlShortener::SHORTEN_URL_SIZE
     raise CustomExceptions::InvalidUrl, "invalid shortlink size" if \
