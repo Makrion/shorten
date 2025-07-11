@@ -1,0 +1,7 @@
+{
+    "name": "shorten",
+    "scripts": {
+      "postdeploy": "RAILS_ENV=production rails db:create db:migrate"
+    }
+  }
+  

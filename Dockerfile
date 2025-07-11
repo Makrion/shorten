@@ -25,9 +25,8 @@ RUN apt-get update -qq && \
     libyaml-dev \
     pkg-config \
     sqlite3 \
-    default-mysql-client \
-    libmariadb3 \
-    default-libmysqlclient-dev \
+    postgresql-client \
+    libpq-dev \
     vim \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
@@ -38,7 +37,12 @@ ENV RAILS_ENV="development" \
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
-RUN bundle install
+# For development mode, explicitly exclude production gems and remove pg from lockfile
+RUN sed -i '/pg (/d' Gemfile.lock && \
+    sed -i '/pg (/d' Gemfile.lock && \
+    sed -i '/^\s*pg/d' Gemfile.lock && \
+    bundle config set --local without 'production' && \
+    bundle install
 
 # Copy application code
 COPY . .
