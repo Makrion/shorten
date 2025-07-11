@@ -1,0 +1,7 @@
+{
+    "name": "shorten",
+    "scripts": {
+      "postdeploy": "bin/rails db:migrate"
+    }
+  }
+  
