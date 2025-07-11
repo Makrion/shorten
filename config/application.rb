@@ -23,5 +23,8 @@ module Shorten
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Base URL for the application
+    BASE_URL = (ENV["BASE_URL"] || "https://shorten.com").downcase + "/"
   end
 end
